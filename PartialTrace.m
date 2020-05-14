@@ -30,7 +30,7 @@
 %   requires: opt_args.m, PermuteSystems.m
 %   author: Nathaniel Johnston (nathaniel@njohnston.ca)
 %   package: QETLAB
-%   last updated: November 22, 2012
+%   last updated: March 20, 2020
 
 function Xpt = PartialTrace(X,varargin)
 
@@ -62,10 +62,16 @@ if(mode == -1)
     mode = (isnum && sp && prod_dim_sys^2 <= prod_dim);
 end
 
+% If tracing out all the systems, just take the full trace. This helps avoid
+% some edge cases particulary when some systems have dimension 1 but are not
+% explicitly asked to be traced out.
+if(prod_dim_sys == prod_dim)
+	Xpt = trace(X);
+
 % If the matrix is sparse and the amount we are tracing over is smaller
 % than the amount remaining, just do the naive thing and manually add up
 % the blocks.
-if(mode)
+elseif(mode)
     sub_sys_vec = prod_dim*ones(1,prod_dim_sys)/prod_dim_sys;
     perm = [sys,setdiff(1:num_sys,sys)];
 
