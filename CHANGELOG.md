@@ -5,6 +5,7 @@ All notable changes to QETLAB will be documented in this file.
 ### Added
 - Concurrence: Computes the concurrence of a 2-qubit state.
 - EntFormation: Computes the entanglement of formation of a 2-qubit state or a pure state.
+- MatsumotoFidelity: Computes the Matsumoto fidelity of two density matrices.
 - helpers/dec_to_bin: Converts a decimal number to a binary vector. Replaces de2bi from the Communications toolbox.
 - helpers/pad_array: Pads an array with zeroes. Replaces padarray from the Image Processing toolbox.
 
@@ -13,6 +14,7 @@ All notable changes to QETLAB will be documented in this file.
 - Entropy: Improved numerical stability so that it no longer frequently returns NaN output.
 - GHZState: Now accepts DIM = 1 and/or Q = 1 as input.
 - Negativity: Users can now input either a pure state vector or a density matrix (previously, only density matrices were accepted).
+- NonlocalGameValue: Now computes classical value of a game quicker, via algorithm of arXiv:2005.13418
 - Tensor: Now works properly (i.e., returns the scalar 1) when M = 0.
 
 ## [0.9] - 2016-01-12
