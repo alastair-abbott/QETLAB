@@ -28,11 +28,16 @@
 %   URL: http://www.qetlab.com/PermuteSystems
 
 %   requires: opt_args.m
-%   author: Nathaniel Johnston (nathaniel@njohnston.ca)
+%   author: Nathaniel Johnston (nathaniel@njohnston.ca) and Mateus Araújo
 %   package: QETLAB
-%   last updated: November 6, 2014
+%   last updated: September 16, 2022
 
 function PX = PermuteSystems(X,perm,varargin)
+
+if all(perm == 1:length(perm)) %do nothing if trivial permutation is requested
+	PX = X;
+	return
+end
 
 dX = size(X);
 is_vec = (min(dX) == 1);
@@ -59,7 +64,7 @@ prod_dimR = prod(dim(1,:));
 prod_dimC = prod(dim(2,:));
 
 % Do some basic input checking.
-if length(perm) ~= num_sys
+if length(dim) ~= num_sys
     error('PermuteSystems:InvalidPerm','length(PERM) must equal length(DIM).')
 elseif ~all(sort(perm) == 1:num_sys)
     error('PermuteSystems:InvalidPerm','PERM must be a permutation vector.')
