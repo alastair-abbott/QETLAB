@@ -22,16 +22,16 @@ function krn = Tensor(A,varargin)
 % If A is a cell, tensor together each element of the cell.
 if(iscell(A))
     krn = A{1};
-    for j = 2:length(A);
+    for j = 2:length(A)
         krn = kron(krn,A{j});
     end
     
 % If two arguments were received and the second is a scalar, tensor A with itself that many times.
-elseif(nargin == 2 && length(varargin{1}) == 1)
+elseif(nargin == 2 && isscalar(varargin{1}))
     % Tensor naively if we only want a few copies.
     if(varargin{1} <= 4 || (length(A) > 3 && ~issparse(A)))
         krn = 1;
-        for j = 1:varargin{1};
+        for j = 1:varargin{1}
             krn = kron(krn,A);
         end
         
@@ -58,7 +58,7 @@ elseif(nargin == 2 && length(varargin{1}) == 1)
 % If two or more arguments were received and the second isn't a scalar, tensor together all arguments.
 else
     krn = A;
-    for j = 2:nargin;
+    for j = 2:nargin
         krn = kron(krn,varargin{j-1});
     end
 end

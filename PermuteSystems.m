@@ -19,7 +19,7 @@
 %   column dimensions can be specified by putting the row dimensions in the
 %   first row of DIM and the column dimensions in the second row of DIM.
 %   If ROW_ONLY is set to 1, then only the rows of X are permuted, but not
-%   the columns -- this is equivalent tomultiplying X on the left by the
+%   the columns -- this is equivalent to multiplying X on the left by the
 %   corresponding permutation operator, but not on the right. If ROW_ONLY
 %   is set to 1 then DIM only needs to contain the row dimensions of the
 %   subsystems, even if X is not square. If INV_PERM equals 1 then the

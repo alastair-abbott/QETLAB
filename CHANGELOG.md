@@ -1,13 +1,32 @@
 # Change Log
 All notable changes to QETLAB will be documented in this file.
 
-## Changes since v0.9 was released on 2016-01-12
+## CHANGES SINCE v1.0 WAS RELEASED ON 2025-07-22
 ### Added
+- AdditiveCompoundMatrix: Computes the r-th additive compound matrix of a given square matrix (similar to how CompoundMatrix computes the multiplicative compound matrix).
+- KroneckerSum: Computes the Kronecker sum of two or more matrices (similar to how Tensor computes the Kronecker product of two or more matrices).
+- CITATION.bib: For citing QETLAB via BibTeX.
+
+### Changed
+- CompoundMatrix: Added support for symbolic matrices, and made changes to speed it up.
+- helpers/sk_iterate: Changed padarray to pad_array so that this function does not rely on MATLAB's image processing toolbox when specifying an initial vector v0.
+- README.md: Update Zenodo badge to v0.9's submission
+
+## [1.0] - 2025-07-22
+### Added
+- CliqueNumber: Bounds the clique number (i.e., maximum size of a clique) of a graph.
 - Concurrence: Computes the concurrence of a 2-qubit state.
+- CopositivePolynomial: Creates a homogenous polynomial whose non-negativity is equivalent to copositivity of a given matrix.
 - EntangledSubspace: Constructs a basis of a bipartite r-entangled subspace of any dimension.
 - EntFormation: Computes the entanglement of formation of a 2-qubit state or a pure state.
+- IsCopositive: Determines whether or not a matrix is copositive.
 - MatsumotoFidelity: Computes the Matsumoto fidelity of two density matrices.
 - ParallelRepetition: Produces the coefficients of a parallel repetition of a nonlocal game, in full probability notation. Replaces the old NonlocalGameValue.m.
+- PauliChannel: Fixed a bug where "probability vectors" summing to less than 1 were being accepted as input to the function.
+- PolynomialAsMatrix: Creates a compact fully symmetric matrix representation of a polynomial.
+- PolynomialOptimize: Bounds the optimal value of a homogeneous polynomial on the unit sphere.
+- PolynomialSOS: Bounds the optimal value of a homogeneous polynomial on the unit sphere via the Sum-Of-Squares hierarchy.
+- RandomGraph: Generates the adjacency matrix of a random graph.
 - RandomPPTState: Generates a random density matrix with positive partial transpose, and optionally low rank.
 - helpers/asum_vector: Creates all vectors with binary entries adding to a given value. Used by AntisymmetricProjection.m.
 - helpers/asymind: Creates all vectors with strictly increasing permutations of an input vector.
@@ -16,13 +35,16 @@ All notable changes to QETLAB will be documented in this file.
 - helpers/dec_to_bin: Converts a decimal number to a binary vector. Replaces de2bi from the Communications toolbox.
 - helpers/cg2fc: Converts a Bell functional or behaviour in Collins-Gisin notation notation and converts it to full correlator notation. Used in BellInequalityMax.m.
 - helpers/cg2fp: Converts a Bell functional or behaviour in Collins-Gisin notation notation and converts it to full probability notation. Used in BellInequalityMax.m.
+- helpers/exp2ind: Looks up a monomial's lexicographical index based on a list of exponents.
 - helpers/fc2fp: Converts a Bell functional or behaviour in full correlator notation and converts it to full probability notation. Used in BellInequalityMax.m.
 - helpers/fc2cg: Converts a Bell functional or behaviour in full correlator notation and converts it to Collins-Gisin notation. Used in BellInequalityMax.m.
-- helpers/ffl: Produces the coefficients of the Fortnow-Feige-Lovász nonlocal game. Can be used as a test case for BellInequalityMax.
+- helpers/ffl: Produces the coefficients of the Fortnow-Feige-Lovasz nonlocal game. Can be used as a test case for BellInequalityMax.
 - helpers/fp2fc: Converts a Bell functional or behaviour in full probability notation and converts it to full correlator notation. Used in BellInequalityMax.m.
 - helpers/fp2cg: Converts a Bell functional or behaviour in full probability notation and converts it to Collins-Gisin notation. Used in BellInequalityMax.m.
+- helpers/has_band_k_ordering: Determines whether a matrix has bandwidth â‰¤ k up to symmetric permutation. Used as a new helper check in IskIncoherent.m.
 - helpers/glob_ind: Creates a global index from a vector of local indices. Used to be bundled inside of SymmetricProjection.m.
 - helpers/pad_array: Pads an array with zeroes. Replaces padarray from the Image Processing toolbox.
+- helpers/poly_rand_input: Evaluates a homogeneous polynomial on a random input from the unit sphere.
 - helpers/sum_vector: Creates all vectors with non-negative integer entries adding to a given value. Used to be bundled inside of SymmetricProjection.m.
 - helpers/symind: Creates all vectors with non-increasing permutations of an input vector.
 - helpers/symindfind: Finds the row index of a vector in symind.
@@ -31,9 +53,12 @@ All notable changes to QETLAB will be documented in this file.
 - AntisymmetricProjection: Dramatically increased speed when using MODE = 0. Changed and standardized the order of the columns when using PARTIAL = 1 and MODE = 0.
 - BellInequalityMax: Changed to allow input in full probability, full correlation, or Collins-Gisin notation. See new documentation page for details.
 - DiamondNorm: Changed the SDP used in the calculation. This function is now more numerically robust, at the expense of being slightly slower.
+- DickeState: Changed the code so that it no longer depends on helpers/unique_perms.
 - Entropy: Improved numerical stability so that it no longer frequently returns NaN output.
 - GHZState: Now accepts DIM = 1 and/or Q = 1 as input.
 - IsBlockPositive: Fixed a numerical tolerance error that would sometimes cause incorrect results to be reported.
+- IskIncoherent: Fixed bug with nested CVX optimization and added a bandwidth check to sometimes return early. Also fixed documentation.
+- IsSeparable: Fixed a numerical tolerance error that would sometimes cause incorrect results to be reported.
 - Negativity: Users can now input either a pure state vector or a density matrix (previously, only density matrices were accepted).
 - NonlocalGameValue: Now computes classical value of a game quicker, via algorithm of arXiv:2005.13418
 - PartialTrace: Now allows pure state vectors as input, and computes their partial traces (i.e., reduced density matrices) much more quickly.
@@ -46,6 +71,7 @@ All notable changes to QETLAB will be documented in this file.
 
 ### Removed
 - NonlocalGameValue: Made redundant by newly-added ParallelRepetition function.
+- helpers/unique_perms: Changed to DickeState and SymmetricProjection made this function no longer necessary.
 
 ## [0.9] - 2016-01-12
 ### Added
